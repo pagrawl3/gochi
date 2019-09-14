@@ -4,9 +4,14 @@ const Schema = mongoose.Schema;
 const Reply = new Schema(
   {
     date: { type: Date },
-    fromName: { type: String, default: '' },
-    fromEmail: { type: String, default: '' },
-    body: { type: String, default: '' }
+    from: { type: String, default: '' },
+    cc: { type: String, default: '' },
+    body: { type: String, default: '' },
+    snippet: { type: String, default: '' },
+    textPlain: { type: String, default: '' },
+    textHtml: { type: String, default: '' },
+    threadId: { type: String, default: '' },
+    email: { type: Schema.ObjectId, ref: 'Email' }
   },
   { timestamps: true }
 );

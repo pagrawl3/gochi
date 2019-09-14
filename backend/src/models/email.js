@@ -5,10 +5,12 @@ const Email = new Schema(
   {
     date: { type: Date },
     subject: { type: String, default: '' },
-    fromName: { type: String, default: '' },
-    fromEmail: { type: String, default: '' },
-    body: { type: String, default: '' },
-    replies: [{ type: Schema.ObjectId, ref: 'Reply' }],
+    from: { type: String, default: '' },
+    snippet: { type: String, default: '' },
+    textPlain: { type: String, default: '' },
+    textHtml: { type: String, default: '' },
+
+    threadId: { type: String, default: '' },
     category: { type: Schema.ObjectId, ref: 'Category' },
     status: { type: Schema.ObjectId, ref: 'Status' },
     dashboard: { type: Schema.ObjectId, ref: 'Dashboard' }

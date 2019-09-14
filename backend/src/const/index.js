@@ -9,7 +9,7 @@ module.exports = {
     AUTH_URI: 'https://accounts.google.com/o/oauth2/auth',
     REDIRECT_URI: 'https://gochi.netlify.com/callback',
     RESPONSE_TYPE: 'code',
-    SCOPE: 'openid%20email',
+    SCOPE: 'openid%20email%20https://mail.google.com/',
     TOKEN_URI: 'https://www.googleapis.com/oauth2/v4/token',
     CLIENT_SECRET: 'SIzxuWw7aJ-5Qq0YV2luI_Op',
     GRANT_TYPE: 'authorization_code',

@@ -136,6 +136,10 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+
 base64-arraybuffer@0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/base64-arraybuffer/-/base64-arraybuffer-0.1.5.tgz#73926771923b5a19747ad666aa5cd4bf9c6e9ce8"
@@ -828,6 +832,12 @@ global-dirs@^0.1.0:
   resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-0.1.1.tgz#b319c0dd4607f353f3be9cca4c72fc148c49f445"
   dependencies:
     ini "^1.3.4"
+
+gmail-api-parse-message@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/gmail-api-parse-message/-/gmail-api-parse-message-2.1.0.tgz#18657171ade9584a6d17c9ae7d5af605c514e925"
+  dependencies:
+    base-64 "^0.1.0"
 
 google-auth-library@^3.0.0:
   version "3.1.2"
