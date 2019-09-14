@@ -1,4 +1,4 @@
-@import '../../../../const/index.scss';
+@import "../../../../const/index.scss";
 
 .email-header {
   padding: 16px;
@@ -9,6 +9,27 @@
 
   &-checkbox {
     margin-right: 12px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $green;
+      opacity: 0.4;
+      transition: border 0.2s ease-in-out;
+
+      & g {
+        fill: $green;
+      }
+    }
+
+    &-active {
+      border: 1px solid $green;
+      transition: border 0.2s ease-in-out;
+
+      & g {
+        fill: $green;
+      }
+    }
   }
 
   &-text {
