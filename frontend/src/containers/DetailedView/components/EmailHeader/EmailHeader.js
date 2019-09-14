@@ -4,10 +4,11 @@ import './EmailHeader.scss';
 import Checkbox from '../../../../components/Checkbox';
 import Label from '../../../../components/Label';
 
-function EmailHeader({ title }) {
+function EmailHeader({ title, resolved }) {
+  let resolvedClass = resolved ? 'email-header-checkbox-active' : '';
   return (
     <div className="email-header">
-      <Checkbox size={18} className="email-header-checkbox" />
+      <Checkbox size={18} className={`email-header-checkbox ${resolvedClass}`} />
       <div className="email-header-text">
         <div className="email-header-text-title">{title}</div>
         <div className="email-header-text-subtitle">
@@ -20,7 +21,8 @@ function EmailHeader({ title }) {
 }
 
 EmailHeader.defaultProps = {
-  title: 'Feature Request <> Reassign Chats as feature in permissions'
+  title: 'Feature Request <> Reassign Chats as feature in permissions',
+  resolved: false,
 };
 
 export default EmailHeader;
