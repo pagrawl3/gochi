@@ -22,7 +22,7 @@ exports.get = function(req, res) {
 exports.login = async function(req, res) {
   const email = req.body.data.email;
   User.findOne({ email })
-    .then(user => returnSuccess(res, 'Logged in successfully'))
+    .then(user => returnSuccess(res, 'Logged in successfully', user))
     .catch(e => returnError(res, 'User does not exist'));
 };
 
@@ -33,13 +33,13 @@ exports.authenticate = function(req, res, next) {
     return returnError(res, 'Access Token not provided');
   }
 
-  verifyToken
+  verifyToken(token)
     .then(decoded => User.findOne({ _id: decoded._id }).populate('dashboards'))
     .then(user => {
       req.user = user;
       next();
     })
-    .catch(e => returnError(res, err));
+    .catch(err => returnError(res, err));
 };
 
 exports.authenticateRoute = function(req, res) {
@@ -47,5 +47,5 @@ exports.authenticateRoute = function(req, res) {
   User.findOne({ _id: req.user._id })
     .populate('dashboards')
     .then(user => returnSuccess(res, 'User fetched successfully', user))
-    .catch(e => returnError(res, err));
+    .catch(err => returnError(res, err));
 };

@@ -8,7 +8,9 @@ const Dashboard = new Schema(
     title: { type: String, default: '' },
     durationType: { type: String, default: CONST.DURATION_TYPES.WEEKLY },
     startDate: { type: Date, default: new Date() },
-    authKey: { type: String, default: '' }
+    authKey: { type: String, default: '' },
+    categories: [{ type: Schema.ObjectId, ref: 'Category' }],
+    statuses: [{ type: Schema.ObjectId, ref: 'Status' }]
   },
   { timestamps: true }
 );

@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const Category = new Schema(
   {
     title: { type: String, required: true },
-    color: { type: String, default: '', required: true }
+    color: { type: String, default: '', required: true },
+    duration: { type: Number, default: 3600, required: true }
   },
   { timestamps: true }
 );
