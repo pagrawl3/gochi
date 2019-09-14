@@ -12,7 +12,7 @@ exports.getLoginURL = async function(req, res) {
   returnSuccess(res, "Link generated successfully", { URL: URL });
 };
 
-exports.getAccessToken = async function(req, res) {
+exports.getAccessToken = async function(req, expressRes) {
   let code = req.body.code ? req.body.code : "";
 
   if (!code) {
@@ -39,40 +39,65 @@ exports.getAccessToken = async function(req, res) {
       if (res.data.access_token) {
         let decoded = jwt.decode(res.data.id_token);
         let { email } = decoded;
-        await User.findOne({ email })
-          .then(async user => {
-            if (!user) {
-              let newUser = {
-                email: email,
-                auth: res.data.access_token,
-                refreshToken: res.data.refresh_token
-              };
-              await new User(newUser)
-                .save()
-                .then(newUser => {
-                  console.log("newUser", newUser);
-                })
-                .catch(err => returnError(res, err));
-            }
-          })
-          .catch(e => console.log("rror", e));
+        await User.findOne({ email }).then(async user => {
+          if (!user) {
+            let newUser = {
+              email: email,
+              auth: res.data.access_token,
+              refreshToken: res.data.refresh_token
+            };
+            await new User(newUser)
+              .save()
+              .then(newUser => {
+                let token = jwt.sign({ id: newUser._id }, "gochigang");
+
+                getThreads(CONFIG);
+                returnSuccess(expressRes, "User info", {
+                  token: token,
+                  user: {
+                    email: newUser.email,
+                    dashboard: newUser.dashboards
+                  }
+                });
+              })
+              .catch(err => returnError(res, err));
+          } else {
+            user.auth = res.data.access_token;
+            user.refreshToken = res.data.refresh_token;
+            user
+              .save()
+              .then(() => {
+                let token = jwt.sign({ id: user._id }, "gochigang");
+
+                getThreads(CONFIG);
+                returnSuccess(expressRes, "User info", {
+                  token: token,
+                  user: {
+                    email: user.email,
+                    dashboard: user.dashboards
+                  }
+                });
+              })
+              .catch(err => {
+                console.log("err", err);
+                returnError(expressRes, "Error occurred! Try again later");
+              });
+          }
+        });
       }
-      // User.findOne({ email })
-      //   .then(user => returnSuccess(res, "Logged in successfully", user))
-      //   .catch(e => returnError(res, "User does not exist"));
     })
     .catch(err => {
       console.log("err", err);
     });
 };
 
-function getThreads() {
+function getThreads(config) {
   axios
-    .get("https://www.googleapis.com/gmail/v1/users/me/threads", CONFIG)
+    .get("https://www.googleapis.com/gmail/v1/users/me/threads", config)
     .then(res => {
       console.log(res);
     })
-    .catch((err) => {
-        console.log(err)
-    })
+    .catch(err => {
+      console.log(err);
+    });
 }

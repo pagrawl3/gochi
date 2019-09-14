@@ -7,7 +7,7 @@ module.exports = {
   GMAIL: {
     CLIENT_ID: '923614681244-6dg6g672bfk6jgn08gb85fs6idgf1131.apps.googleusercontent.com',
     AUTH_URI: 'https://accounts.google.com/o/oauth2/auth',
-    REDIRECT_URI: 'https://gochi.netlify.io/callback',
+    REDIRECT_URI: 'https://gochi.netlify.com/callback',
     RESPONSE_TYPE: 'code',
     SCOPE: 'openid%20email',
     TOKEN_URI: 'https://www.googleapis.com/oauth2/v4/token',
