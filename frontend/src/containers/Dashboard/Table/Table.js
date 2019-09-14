@@ -12,7 +12,8 @@ function Table() {
         subject="Reassign chat on 'My Chats' page is currently available to all permission groups with access to Athena Chat. However, we have received a request…"
         senderName="Suraj"
         status="First response needed"
-        timeremaining="8 Minutes remaining"
+        date="09/14/19 23:59:00"
+        categoryId="5d7cc9566455590e63a49686"
       />
     </div>
   );

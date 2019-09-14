@@ -22,7 +22,7 @@ function Callback() {
     });
   }, []);
 
-  return loggedIn ? <Redirect to="/emails" /> : <div className="callback"></div>;
+  return loggedIn ? <Redirect to="/emails" /> : <div className="login"></div>;
 }
 
 export default Callback;
