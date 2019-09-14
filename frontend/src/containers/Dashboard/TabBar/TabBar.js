@@ -16,7 +16,7 @@ function TabBar () {
             </div>
 
             <div className='tabBar-column rhs'>
-                <Filter/>
+                <Filter name='sorted by time remaining'/>
             </div>
 
         </div>
