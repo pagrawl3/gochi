@@ -4,7 +4,7 @@
   "description": "Gochi Backend",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js",
     "restart": "NODE_ENV=production forever restartall",
     "load:fixtures": "node ./src/scripts/loadFixtures.js"
   },
@@ -15,6 +15,7 @@
     "compression": "^1.7.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "googleapis": "^39.2.0",
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.21.0",
     "mongodb": "^3.3.2",
@@ -25,5 +26,7 @@
     "shortid": "^2.2.8",
     "socket.io": "^2.1.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
 }
