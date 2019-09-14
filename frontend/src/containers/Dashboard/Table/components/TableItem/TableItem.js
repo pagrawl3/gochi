@@ -8,7 +8,7 @@ import "./TableItem.scss";
 import Context from "../../../../../components/Context";
 
 function TableItem({ title, subject, senderName, categoryId, status, date }) {
-  const { setState, categories } = React.useContext(Context);
+  const { categories } = React.useContext(Context);
 
   const category =
     categories.find(category => category._id === categoryId) || {};
@@ -19,8 +19,8 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
   const timeRemaining = (duration - timeElapsed) / 60;
   var timeRemainingText = "";
 
-  var categoryClicked = false;
-  const activeClassName = categoryClicked ? "active" : "";
+  const [categoryClicked, setCategoryClicked] = React.useState(false);
+  const hideActiveDot = categoryClicked ? 'tableItem-column-labelsContainer-titleContainer-hide-current' : '';
 
   if (timeRemaining < 1 && timeRemaining > 0) {
     timeRemainingText = "One Minutes Remaining";
@@ -35,17 +35,18 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
       <div className="tableItem-column lhs">
         <CheckBox className="tableItem-column-accessory" />
         <div className="tableItem-column-labelsContainer">
-          <div className="tableItem-column-labelsContainer-titleContainer">
+          <div className={`tableItem-column-labelsContainer-titleContainer ${hideActiveDot}`}>
             {/* Category Dot */}
             <CategoryDot
               color={category.color}
-              className="tableItem-column-labelsContainer-titleContainer-category"
-              onClick={() => setState({ categoryClicked: !categoryClicked })}
+              className={`tableItem-column-labelsContainer-titleContainer-category`}
+              onClick={() => setCategoryClicked(!categoryClicked )}
             />
             <div
-              className={`tableItem-column-labelsContainer-titleContainer-categoryDots ${activeClassName}`}>
+              className={`tableItem-column-labelsContainer-titleContainer-categoryDots`}>
               {categories.map((categoryItem, i) => (
                 <CategoryDot
+                  className="tableItem-column-labelsContainer-titleContainer-category"
                   selected={categoryClicked}
                   color={categoryItem.color}
                 />
