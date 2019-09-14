@@ -1,7 +1,7 @@
 import React from 'react';
 import './TabBar.scss';
 
-import CategoryItem from './components/CategoryItem';
+import TabItem from './components/TabItem';
 import Filter from './components/Filter';
 
 function TabBar () {
@@ -9,10 +9,10 @@ function TabBar () {
         <div className='tabBar'>
             
             <div className='tabBar-column lhs'>
-                <CategoryItem name='ALL(19)'/>
-                <CategoryItem name='INCOMING(3)'/>
-                <CategoryItem name='IN PROGRESS(4)'/>
-                <CategoryItem name='COMPLETE(12)' excludeMargin={true}/>
+                <TabItem name='ALL(19)'/>
+                <TabItem name='INCOMING(3)'/>
+                <TabItem name='IN PROGRESS(4)'/>
+                <TabItem name='COMPLETE(12)' excludeMargin={true}/>
             </div>
 
             <div className='tabBar-column rhs'>
