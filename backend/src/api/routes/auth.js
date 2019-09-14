@@ -1,6 +1,6 @@
 const express = require('express');
-const utils = require('../utils');
-const CONST = require('../const');
+const utils = require('../../utils');
+const CONST = require('../../const');
 
 const userController = require('../controllers/user');
 

@@ -1,4 +1,4 @@
-const utils = require('../utils');
+const utils = require('../../utils');
 const Dashboard = require('../../models/Dashboard');
 
 const { returnError, returnSuccess } = utils;

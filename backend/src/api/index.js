@@ -1,5 +1,5 @@
-const CONST = require('./const');
-const _helper = require('./utils');
+const CONST = require('../const');
+const _helper = require('./../utils');
 
 const authRouter = require('./routes/auth');
 
