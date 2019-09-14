@@ -1,0 +1,18 @@
+.tableItem {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &.lhs {     
+        display: flex;   
+        align-items: center;                  
+    }
+
+    &.rhs {  
+        display: flex;          
+        align-items: center;
+        flex-direction: column;
+    }
+    
+}

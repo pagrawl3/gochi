@@ -20,8 +20,6 @@ function TabBar () {
             </div>
 
         </div>
-        
-        
     )
 }
 
