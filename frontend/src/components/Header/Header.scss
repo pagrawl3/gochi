@@ -18,7 +18,27 @@
         }
 
         &-title {
-            margin-bottom: 4px;            
+            margin-bottom: 4px; 
+            opacity: 0.42;
+            font-family: AvenirNext;
+            font-size: 28px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #ffffff;           
+        }
+
+        &-subtitle {
+            font-family: AvenirNext;
+            font-size: 14px;
+            font-weight: 600;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            color: #ffffff;
         }
     }
 }
