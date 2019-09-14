@@ -1,5 +1,9 @@
 import React from 'react';
 import './Header.scss';
+import Icon from '../Header/Icon';
+
+import settingsIcon from '../../icons/iconPlaceholder.svg';
+
 
 function Header ({ title, subtitle}) {
     return (
@@ -10,8 +14,10 @@ function Header ({ title, subtitle}) {
                 <div className='header-column-subtitle'>{subtitle}</div>
             </div>
 
-            <div className='header-column rhs'>
-                
+            <div className='header-column rhs'>                     
+                <Icon source={settingsIcon} />                
+                <Icon source={settingsIcon}/>                
+                <Icon source={settingsIcon} excludeMargin={true} />
             </div>
 
         </div>

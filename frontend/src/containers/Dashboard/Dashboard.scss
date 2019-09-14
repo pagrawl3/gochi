@@ -1,14 +1,11 @@
+@import '../../const/index.scss';
+
 .dashboard {
 
     display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;    
-    background-image: linear-gradient(180deg, #14213D 0%, rgba(253,253,253,0.00) 100%);
-}
+    flex: 1;
+    flex-direction: column;    
 
-body {
-    
-    margin: 0;
-    padding: 0;
-  }
+    background-image: $dashboard-background-image;
+    padding: $dashboard-padding;    
+}

@@ -4,7 +4,21 @@
     align-items: center;
     justify-content: space-between;
 
-    &-column {        
-        flex-direction: column
+    &-column {
+
+        &.lhs {     
+            display: flex;       
+            flex-direction: column;            
+        }
+
+        &.rhs {  
+            display: flex;          
+            align-items: center;
+            flex-direction: row;
+        }
+
+        &-title {
+            margin-bottom: 4px;            
+        }
     }
 }

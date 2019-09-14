@@ -1,0 +1,40 @@
+.dashboard
+  .header
+    .header-column.lhs
+      .header-title
+      .header-subtitle
+    .header-column.rhs
+      .header-icon.search
+      .header-icon.settings
+      .header-icon.sync
+
+
+
+
+.header {
+  .
+  .
+  .header-column {
+    flex: 1;
+    
+    .lhs {
+
+    }
+
+    .rhs {
+
+    }
+  }
+
+  &-column {
+   
+  }
+
+  &-icon {
+    
+  }
+  
+  &-title {
+    
+  }
+}
