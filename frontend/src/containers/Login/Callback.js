@@ -11,7 +11,7 @@ function Callback() {
   const { setState } = React.useContext(Context);
 
   React.useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.hash.slice(1).replace('/callback?', ''));
+    const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get('code');
     API.login(code).then(data => {
       const { token } = data;
