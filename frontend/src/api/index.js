@@ -21,7 +21,7 @@ class API {
   sync = dashboardId => this.request.post(`${BASE_URL}/dashboards/${dashboardId}/sync`);
 
   // CLASS SETTERS
-  _setToken = token => this.APIRequest.setToken(token);
+  _setToken = token => this.request.setToken(token);
 }
 
 export default new API();
