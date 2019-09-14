@@ -1,14 +1,18 @@
 @import '../../const/index.scss';
 
-.label {
+$size: 18px;
+
+.checkbox {
   display: flex;
   align-items: center;
+  border: 1px solid $light;
+  width: $size;
+  height: $size;
+  padding: 8px;
+  border-radius: $size;
   &-icon {
-    margin-right: 2px;
-    width: 12px;
-    height: 12px;
-    border-radius: 8px;
-    background-color: #eee;
+    width: $size;
+    height: $size;
   }
 
   &-title {

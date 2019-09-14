@@ -1,4 +1,12 @@
 @import '../../../../const/index.scss';
 
-.email-header {
+.email-body {
+  padding: 24px;
+  max-width: 600px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.7;
+  * {
+    -webkit-font-smoothing: initial;
+  }
 }

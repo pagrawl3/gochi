@@ -1,9 +1,9 @@
 import React from 'react';
 import './Checkbox.scss';
 
-function Checkbox({ src, title }) {
+function Checkbox({ src, title, className }) {
   return (
-    <div className="checkbox">
+    <div className={`checkbox ${className}`}>
       <svg className="checkbox-icon" width="17px" height="16px" viewBox="0 0 17 16" version="1.1">
         <g transform="translate(-374.000000, -108.000000)" fill="#E5E5E5" fillRule="nonzero">
           <path

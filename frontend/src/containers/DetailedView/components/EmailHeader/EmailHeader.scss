@@ -1,6 +1,25 @@
 @import '../../../../const/index.scss';
 
 .email-header {
-  padding: 8px;
+  padding: 16px;
   border-bottom: 1px solid $light;
+
+  display: flex;
+  align-items: center;
+
+  &-checkbox {
+    margin-right: 12px;
+  }
+
+  &-text {
+    &-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    &-subtitle {
+      display: flex;
+      align-items: center;
+    }
+  }
 }

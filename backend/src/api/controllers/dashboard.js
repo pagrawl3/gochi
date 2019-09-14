@@ -15,6 +15,8 @@ exports.getAllDashboards = async function(req, res) {
 exports.getDashboard = function(req, res) {
   const dashboardID = req.params.id;
   Dashboard.findOne({ _id: dashboardID })
+    .populate('categories')
+    .populate('statuses')
     .then(dashboard => returnSuccess(res, 'Dashboard fetched successfully', dashboard))
     .catch(() => returnError(res, 'Error fetching dashboard', 500));
 };

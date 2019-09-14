@@ -9,7 +9,7 @@
         height: $header-icon-height;        
     }    
 
-    &.exclude {
+    &:last-child {
         margin-right: 0px;
-    }
+    } 
 }
