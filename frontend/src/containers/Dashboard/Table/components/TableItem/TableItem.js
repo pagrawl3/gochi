@@ -1,14 +1,17 @@
 import React from "react";
 import Dayjs from "dayjs";
 
+import CheckBox from '../../../../../components/Checkbox';
+import CategoryDot from '../../../../../components/CategoryDot';
+
 import "./TableItem.scss";
 import Context from "../../../../../components/Context";
 
 function TableItem({ title, subject, senderName, categoryId, status, date }) {
   const { categories } = React.useContext(Context);
 
-  const category = categories.find(category => category._id === categoryId);
-  const { color, duration } = category || {};
+  const category = categories.find(category => category._id === categoryId) || {};
+  const { color, duration } = category;
 
   const currentDate = Dayjs();
   const timeElapsed = currentDate.diff(date, "second");
@@ -26,11 +29,11 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
   return (
     <div className="tableItem">
       <div className="tableItem-column lhs">
-        <div className="tableItem-column-accessory"></div>
+        <CheckBox className="tableItem-column-accessory"/>
         <div className="tableItem-column-labelsContainer">
           <div className="tableItem-column-labelsContainer-titleContainer">
             {/* Category Dot */}
-            <div className="tableItem-column-labelsContainer-titleContainer-category"></div>
+            <CategoryDot color={category.color} className="tableItem-column-labelsContainer-titleContainer-category"/>
             {/* Email Title */}
             <div className="tableItem-column-labelsContainer-titleContainer-title">
               {title}
