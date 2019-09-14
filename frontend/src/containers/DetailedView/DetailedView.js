@@ -1,15 +1,20 @@
 import React from 'react';
 import './DetailedView.scss';
 
+import CrossButton from '../../icons/cross.svg';
 import EmailHeader from './components/EmailHeader';
 import EmailBody from './components/EmailBody';
 import CategoryCTA from './components/CategoryCTA';
 
-function DetailedView({ categories }) {
+function DetailedView({ active, categories, onClose }) {
+  const activeClassName = active ? 'active' : '';
   return (
-    <div className="detailed-view">
-      <div className="detailed-view-overlay"></div>
+    <div className={`detailed-view ${activeClassName}`}>
+      <div className="detailed-view-overlay" />
       <div className="detailed-view-body">
+        <div onClick={onClose} className="detailed-view-body-cross">
+          <img src={CrossButton} alt="" />
+        </div>
         <div className="detailed-view-body-content">
           <EmailHeader />
           <EmailBody />
