@@ -10,7 +10,7 @@ function Login() {
   const [loginURL, setLoginURL] = React.useState('');
 
   React.useEffect(() => {
-    API.getLoginURL().then(setLoginURL);
+    API.getLoginURL().then(({ URL }) => setLoginURL(URL));
   }, []);
 
   return (

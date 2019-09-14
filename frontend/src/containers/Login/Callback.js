@@ -11,8 +11,9 @@ function Callback() {
   const { setState } = React.useContext(Context);
 
   React.useEffect(() => {
-    const token = '';
-    API.login(token).then(data => {
+    const searchParams = new URLSearchParams(window.location.hash.slice(1).replace('/callback?', ''));
+    const code = searchParams.get('code');
+    API.login(code).then(data => {
       const { token } = data;
       const { dashboards, ...user } = data.user;
       API._setToken(token);

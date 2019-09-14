@@ -1,24 +1,24 @@
-const axios = require("axios");
-const qs = require("query-string");
-const jwt = require("jsonwebtoken");
-const User = require("../../models/user");
-const CONST = require("../../const");
-const utils = require("../../utils");
+const axios = require('axios');
+const qs = require('query-string');
+const jwt = require('jsonwebtoken');
+const User = require('../../models/user');
+const CONST = require('../../const');
+const utils = require('../../utils');
 
 const { returnError, returnSuccess } = utils;
 
 exports.getLoginURL = async function(req, res) {
   const URL = `${CONST.GMAIL.AUTH_URI}?client_id=${CONST.GMAIL.CLIENT_ID}&response_type=${CONST.GMAIL.RESPONSE_TYPE}&redirect_uri=${CONST.GMAIL.REDIRECT_URI}&scope=${CONST.GMAIL.SCOPE}&access_type=${CONST.GMAIL.ACCESS_TYPE}&prompt=consent`;
-  returnSuccess(res, "Link generated successfully", { URL: URL });
+  returnSuccess(res, 'Link generated successfully', { URL: URL });
 };
 
 exports.getAccessToken = async function(req, res) {
-  let code = req.query.code ? req.query.code : "";
+  let code = req.body.code ? req.body.code : '';
 
   if (code) {
     const CONFIG = {
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
 
@@ -47,25 +47,23 @@ exports.getAccessToken = async function(req, res) {
                 new User(newUser)
                   .save()
                   .then(newUser =>
-                    axios.get(
-                      "https://www.googleapis.com/gmail/v1/users/me/threads", CONFIG
-                    ).then((res) => {
-                        console.log(res);
+                    axios.get('https://www.googleapis.com/gmail/v1/users/me/threads', CONFIG).then(res => {
+                      console.log(res);
                     })
                   )
                   .catch(err => returnError(res, err));
               }
             })
-            .catch(e => console.log("rror", e));
+            .catch(e => console.log('rror', e));
         }
         // User.findOne({ email })
         //   .then(user => returnSuccess(res, "Logged in successfully", user))
         //   .catch(e => returnError(res, "User does not exist"));
       })
       .catch(err => {
-        console.log("err", err);
+        console.log('err', err);
       });
   }
 
-  returnSuccess(res, "");
+  returnSuccess(res, '');
 };

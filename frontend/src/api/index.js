@@ -8,7 +8,7 @@ class API {
   }
 
   getLoginURL = () => this.request.get(`${BASE_URL}/login/url`);
-  login = token => this.request.get(`${BASE_URL}/login/callback`, { token });
+  login = code => this.request.post(`${BASE_URL}/login/callback`, { code });
 
   // GET CALLS
   getDashboard = dashboardId => this.request.get(`${BASE_URL}/dashboards/${dashboardId}`);
