@@ -1,9 +1,13 @@
-@import '../../../../const/index.scss';
+@import "../../../../const/index.scss";
 
 .category-cta {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
+  transition: all 0.2s ease-in-out;
+  padding: 0;
+  cursor: pointer;
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -18,7 +22,7 @@
     transition: 0.2s ease-out;
     border: 2px solid rgba($light, 0.9);
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -39,7 +43,7 @@
     opacity: 0;
     transition: 0.2s ease-out;
     &-title {
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 600;
       color: #fff;
       margin-bottom: 4px;
@@ -52,17 +56,36 @@
   }
 
   &.active {
+    margin: 12px 0 !important;
+    transform: none !important;
+
     .category-cta-icon {
       transform: translate3d(0, -25%, 0) scale3d(1.5, 1.5, 1);
       opacity: 1;
+
       &:after {
         transform: scale3d(1, 1, 1);
         opacity: 1;
       }
     }
+
     .category-cta-text {
       transform: translate3d(0, -19%, 0);
-      opacity: 1;
+      opacity: 1 !important;
+    }
+
+    .category-cta-text-title {
+      font-size: 18px;
+    }
+  }
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    margin: 0px 0px 14px;
+    transform: scale(1.1) translate(6px, 0px);
+
+    .category-cta-text {
+      opacity: 0.6;
     }
   }
 }
