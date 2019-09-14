@@ -41,7 +41,7 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
               color={category.color}
               className={`tableItem-column-labelsContainer-titleContainer-category`}
               onClick={() => {
-                if ({categories}) {
+                if (categories.length) {
                   setCategoryClicked(!categoryClicked)
                 }                
               }}
