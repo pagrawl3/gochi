@@ -1,12 +1,10 @@
 import React from 'react';
 import './Icon.scss';
 
-function Icon ({ source, excludeMargin }) {
-
-    let excludeRightMargin = excludeMargin ? 'exclude' : '';
+function Icon ({ source }) {
 
     return (
-        <div className={`icon ${excludeRightMargin}`}>
+        <div className='icon'>
             <img src={source} alt="settings-icon" className='icon-image'/>
         </div>        
     )

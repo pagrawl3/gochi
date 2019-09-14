@@ -7,7 +7,8 @@ import './App.scss';
 
 const INITIAL_STATE = {
   categories: [],
-  statuses: []
+  statuses: [],
+  statusFilter: 0,
 };
 
 function App() {

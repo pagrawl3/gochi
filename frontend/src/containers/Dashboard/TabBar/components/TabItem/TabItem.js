@@ -2,12 +2,10 @@ import React from 'react';
 import './TabItem.scss';
 
 
-function TabItem ({name, excludeMargin}) {
-
-    let excludeRightMargin = excludeMargin ? 'exclude' : '';
-
+function TabItem ({name, active, onClick}) {
+    const activeClassName = active ? 'active' : '';
     return (        
-        <div className={`TabItem ${excludeRightMargin}`}>
+        <div onClick={onClick} className={`TabItem ${activeClassName}`}>
             <div className='TabItem-name'>{name}</div>
             <div className='TabItem-bar'></div>
         </div>
