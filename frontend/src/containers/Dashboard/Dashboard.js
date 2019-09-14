@@ -1,15 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import './Dashboard.scss';
 import '../../_reset.scss';
 
 import API from '../../api';
+import Context from '../../components/Context';
 import Header from '../../components/Header';
 import TabBar from './TabBar';
 import Table from './Table';
 
 function Dashboard({ id }) {
+  const { setState } = React.useContext(Context);
   React.useEffect(() => {
-    API.getDashboard(id).then(console.log);
+    API.getDashboard(id).then(data => {
+      const { categories, statuses } = data;
+      setState({ categories, statuses });
+    });
   }, [id]);
 
   return (
