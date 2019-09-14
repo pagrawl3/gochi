@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header';
 import './Dashboard.scss';
+import '../../_reset.scss';
 
 function Dashboard () {
     return (
