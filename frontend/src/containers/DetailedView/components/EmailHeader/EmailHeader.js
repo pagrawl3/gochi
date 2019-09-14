@@ -7,7 +7,7 @@ import Label from '../../../../components/Label';
 function EmailHeader({ title }) {
   return (
     <div className="email-header">
-      <Checkbox className="email-header-checkbox" />
+      <Checkbox size={18} className="email-header-checkbox" />
       <div className="email-header-text">
         <div className="email-header-text-title">{title}</div>
         <div className="email-header-text-subtitle">
