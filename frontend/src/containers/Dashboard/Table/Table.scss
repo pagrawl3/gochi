@@ -1,9 +1,11 @@
+@import '../../../const/index.scss';
+
 .table {
   flex: 1;
   width: 100%;
   background-color: white;
 
   margin-top: 20px;
-  box-shadow: 0 1px 1px 0 #e5e5e5;
+  box-shadow: 0 12px 24px 0 $light;
   border-radius: 4px;
 }
