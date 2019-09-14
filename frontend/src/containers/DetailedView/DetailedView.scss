@@ -1,0 +1,44 @@
+@import '../../const/index.scss';
+
+@mixin fill($position) {
+  position: $position;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.detailed-view {
+  @include fill(fixed);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  &-overlay {
+    @include fill(absolute);
+    background-color: rgba($dark, 0.8);
+  }
+
+  &-body {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 90%;
+    max-width: 768px;
+    margin: 0 auto;
+    &-content {
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      border-radius: 8px;
+      padding-bottom: 8px;
+    }
+
+    &-ctas {
+      position: absolute;
+      bottom: 16px;
+      right: -20px;
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+}
