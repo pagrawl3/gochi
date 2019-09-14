@@ -1,0 +1,13 @@
+.categoryItem {
+
+    margin-right: 8px;          
+
+    &.exclude {
+        margin-right: 0px;
+    }
+
+    &-bar {
+        background-color: white;
+        height: 2px;        
+    }
+}
