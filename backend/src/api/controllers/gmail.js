@@ -14,7 +14,7 @@ exports.getLoginURL = async function(req, res) {
 
 exports.getAccessToken = async function(req, res) {
   let code = req.query.code ? req.query.code : "";
-  console.log("reqqqq", req);
+
   if (code) {
     const CONFIG = {
       headers: {
@@ -47,7 +47,11 @@ exports.getAccessToken = async function(req, res) {
                 new User(newUser)
                   .save()
                   .then(newUser =>
-                    returnSuccess(res, "User created successfully", newUser)
+                    axios.get(
+                      "https://www.googleapis.com/gmail/v1/users/me/threads", CONFIG
+                    ).then((res) => {
+                        console.log(res);
+                    })
                   )
                   .catch(err => returnError(res, err));
               }
