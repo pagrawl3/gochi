@@ -25,7 +25,7 @@ export default class APIRequest {
   post = (url, data = {}) =>
     new Promise((resolve, reject) => {
       data.token = this._token;
-      const params = { method: 'POST', body: JSON.stringify(data) };
+      const params = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
       fetch(url, params)
         .then(response => response.json())
         .then(json => {
@@ -38,7 +38,7 @@ export default class APIRequest {
   put = (url, data = {}) =>
     new Promise((resolve, reject) => {
       data.token = this._token;
-      const params = { method: 'PUT', body: JSON.stringify(data) };
+      const params = { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) };
       fetch(url, params)
         .then(response => response.json())
         .then(json => {
