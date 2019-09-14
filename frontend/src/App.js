@@ -13,7 +13,7 @@ import './App.scss';
 const INITIAL_STATE = {
   categories: [],
   statuses: [],
-  emailOpen: false,
+  emailOpen: true,
   user: {},
   statusFilter: 0
 };

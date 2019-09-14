@@ -1,11 +1,13 @@
 import React from 'react';
+
+import CategoryDot from '../../../../components/CategoryDot';
 import './CategoryCTA.scss';
 
 function CategoryCTA({ title, duration, color, active }) {
   const activeClassName = active ? 'active' : '';
   return (
     <div className={`category-cta ${activeClassName}`}>
-      <div style={{ backgroundColor: color }} className="category-cta-icon" />
+      <CategoryDot active={active} size={32} color={color} />
       <div className="category-cta-text">
         <div className="category-cta-text-title">{title}</div>
         <div className="category-cta-text-subtitle">
