@@ -5,7 +5,11 @@ const User = require('../models/user');
 const Status = require('../models/status');
 const Dashboard = require('../models/dashboard');
 
-mongoose.connect('mongodb://localhost/gochi');
+// MongoDB Connection
+mongoose.connect(
+  "mongodb+srv://ahem:brahmasami@gochi-n4snt.azure.mongodb.net/test?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
 
 Tables = {
   Category,
@@ -15,7 +19,7 @@ Tables = {
 };
 
 Object.keys(fixtures).map(async Table => {
-  console.log('GOCHI: LOADING FIXTURES: ', Table);
+  console.log("GOCHI: LOADING FIXTURES: ", Table);
 
   await Tables[Table].remove({});
 
