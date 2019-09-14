@@ -1,4 +1,4 @@
-const Category = require('../../models/Category');
+const Category = require('../../models/category');
 const utils = require('../../utils');
 
 const { returnError, returnSuccess } = utils;

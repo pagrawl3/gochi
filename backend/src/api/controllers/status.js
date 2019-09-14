@@ -1,4 +1,4 @@
-const Status = require('../../models/Status');
+const Status = require('../../models/status');
 const utils = require('../../utils');
 
 const { returnError, returnSuccess } = utils;

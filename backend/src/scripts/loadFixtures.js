@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const fixtures = require('../fixtures');
-const Category = require('../models/Category');
-const User = require('../models/User');
-const Status = require('../models/Status');
-const Dashboard = require('../models/Dashboard');
+const Category = require('../models/category');
+const User = require('../models/user');
+const Status = require('../models/status');
+const Dashboard = require('../models/dashboard');
 
 mongoose.connect('mongodb://localhost/gochi');
 
