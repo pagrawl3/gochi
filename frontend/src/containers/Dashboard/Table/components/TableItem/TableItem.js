@@ -12,7 +12,7 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
 
   const category =
     categories.find(category => category._id === categoryId) || {};
-  const { color, duration } = category;
+  const { duration } = category;
 
   const currentDate = Dayjs();
   const timeElapsed = currentDate.diff(date, "second");
@@ -48,13 +48,21 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
             />
             <div
               className={`tableItem-column-labelsContainer-titleContainer-categoryDots`}>
-              {categories.map((categoryItem, i) => (
-                <CategoryDot
-                  className="tableItem-column-labelsContainer-titleContainer-category"
-                  selected={categoryClicked}
-                  color={categoryItem.color}
-                />
-              ))}
+              {categories.map((categoryItem, i) => {
+                let className = "tableItem-column-labelsContainer-titleContainer-category";
+
+                if (categoryItem.color === category.color) {
+                  className = "tableItem-column-labelsContainer-titleContainer-category tableItem-column-labelsContainer-titleContainer-category-active";
+                }
+                return (
+                  <CategoryDot
+                    className={className}
+                    selected={categoryClicked}
+                    color={categoryItem.color}
+                    onClick={() => setCategoryClicked(!categoryClicked)}
+                  />
+                )
+              })}
             </div>
             {/* Email Title */}
             <div className="tableItem-column-labelsContainer-titleContainer-title">

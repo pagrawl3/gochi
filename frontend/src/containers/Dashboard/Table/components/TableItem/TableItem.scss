@@ -39,14 +39,13 @@
           }
 
           > div:nth-child(2) {
-            
             opacity: 1;
             margin-left: 0;
             z-index: 9;
             transition: all 0.2s ease-in-out;
           }
 
-          >div:last-child {
+          > div:last-child {
             transition: all 0.2s ease-in-out;
             margin-left: 65px;
           }
@@ -56,6 +55,15 @@
           margin-right: 4px;
           opacity: 1;
           cursor: pointer;
+
+          &-active {
+            background-color: rgb(239, 35, 60);
+
+            &::after {
+              transform: scale3d(0.5, 0.5, 0.5);
+              opacity: 1;
+            }
+          }
         }
 
         &-categoryDots {
