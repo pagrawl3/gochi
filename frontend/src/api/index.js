@@ -1,5 +1,5 @@
 import APIRequest from './APIRequest';
-const BASE_URL = 'https://348343b1.ngrok.io/api/v1';
+const BASE_URL = 'https://705e248b.ngrok.io/api/v1';
 // const BASE_URL = 'http://localhost:9000/api/v1';
 
 class API {
