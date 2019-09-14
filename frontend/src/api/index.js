@@ -7,7 +7,8 @@ class API {
     this.request = new APIRequest();
   }
 
-  login(username, password) {}
+  getLoginURL = () => this.request.get(`${BASE_URL}/login/url`);
+  login = token => this.request.get(`${BASE_URL}/login/callback`, { token });
 
   // GET CALLS
   getDashboard = dashboardId => this.request.get(`${BASE_URL}/dashboards/${dashboardId}`);

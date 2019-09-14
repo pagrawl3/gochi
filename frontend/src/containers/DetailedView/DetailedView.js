@@ -7,14 +7,14 @@ import EmailHeader from './components/EmailHeader';
 import EmailBody from './components/EmailBody';
 import CategoryCTA from './components/CategoryCTA';
 
-function DetailedView({ active, onClose }) {
-  const { categories } = React.useContext(Context);
+function DetailedView() {
+  const { setState, categories, emailOpen: active } = React.useContext(Context);
   const activeClassName = active ? 'active' : '';
   return (
     <div className={`detailed-view ${activeClassName}`}>
       <div className="detailed-view-overlay" />
       <div className="detailed-view-body">
-        <div onClick={onClose} className="detailed-view-body-cross">
+        <div onClick={() => setState({ emailOpen: false })} className="detailed-view-body-cross">
           <img src={CrossButton} alt="" />
         </div>
         <div className="detailed-view-body-content">
