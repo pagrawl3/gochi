@@ -1,15 +1,14 @@
-@import '../../../const/index.scss';
+@import "../../../const/index.scss";
 
 .icon {
+  margin-right: 8px;
 
-    margin-right: 8px;    
+  &-image {
+    width: $header-icon-width;
+    height: $header-icon-height;
+  }
 
-    &-image {        
-        width: $header-icon-width;
-        height: $header-icon-height;        
-    }    
-
-    &.exclude {
-        margin-right: 0px;
-    }
+  &:last-child {
+    margin-right: 0px;
+  }
 }

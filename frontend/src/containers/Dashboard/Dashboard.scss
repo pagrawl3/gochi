@@ -1,11 +1,10 @@
-@import '../../const/index.scss';
+@import "../../const/index.scss";
 
 .dashboard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 
-    display: flex;
-    flex: 1;
-    flex-direction: column;    
-
-    background-image: $dashboard-background-image;
-    padding: $dashboard-padding;    
+  background-image: $dashboard-background-image;
+  padding: $dashboard-padding;
 }

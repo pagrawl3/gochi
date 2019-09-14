@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
-import './Dashboard.scss';
-import '../../_reset.scss';
+import React from "react";
+import "./Dashboard.scss";
+import "../../_reset.scss";
 
-import API from '../../api';
-import Context from '../../components/Context';
-import Header from '../../components/Header';
-import TabBar from './TabBar';
-import Table from './Table';
+import API from "../../api";
+import Context from "../../components/Context";
+import Header from "../../components/Header";
+import TabBar from "./TabBar";
+import Table from "./Table";
 
 function Dashboard({ id }) {
   const { setState } = React.useContext(Context);
@@ -28,7 +28,7 @@ function Dashboard({ id }) {
 }
 
 Dashboard.defaultProps = {
-  id: '5d7cc9566455590e63a4968e'
+  id: "5d7cc9566455590e63a4968e"
 };
 
 export default Dashboard;

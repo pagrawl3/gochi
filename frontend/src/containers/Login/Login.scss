@@ -12,13 +12,11 @@
 
   &-card {
     margin-top: auto;
-    min-width: 400px;
-    max-height: 40vh;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba($dark, 0.3);
     text-align: center;
-    padding: 36px;
+    padding: 100px;
 
     &-logo {
       margin-bottom: 24px;
@@ -29,16 +27,16 @@
       font-weight: 300;
       color: $dark;
       letter-spacing: 6px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       opacity: 0.5;
     }
 
     &-subtitle {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 500;
       color: $dark;
-      opacity: 0.9;
-      margin-bottom: 24px;
+      opacity: 0.4;
+      margin-bottom: 64px;
     }
 
     &-button {
@@ -51,5 +49,6 @@
     padding-bottom: 16px;
     color: #fff;
     opacity: 0.6;
+    font-size: 12px;
   }
 }

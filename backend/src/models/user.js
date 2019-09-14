@@ -6,7 +6,8 @@ const User = new Schema(
     email: { type: String, required: true },
     name: { type: String, default: '' },
     dashboards: [{ type: Schema.ObjectId, ref: 'Dashboard' }],
-    auth: { type: String }
+    auth: { type: String },
+    refreshToken: { type: String }
   },
   { timestamps: true }
 );

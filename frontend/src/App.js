@@ -14,7 +14,8 @@ const INITIAL_STATE = {
   categories: [],
   statuses: [],
   emailOpen: false,
-  user: {}
+  user: {},
+  statusFilter: 0
 };
 
 function App() {

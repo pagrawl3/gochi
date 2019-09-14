@@ -18,7 +18,7 @@ function Login() {
       <div className="login-card">
         <img className="login-card-logo" src={GochiLogo} alt="" />
         <div className="login-card-title">GOCHI</div>
-        <div className="login-card-subtitle">Login using Google below</div>
+        <div className="login-card-subtitle">Clarity while managing on call</div>
         <div className="login-card-button">
           <a href={loginURL}>
             <img src={GoogleButton} alt="" />
