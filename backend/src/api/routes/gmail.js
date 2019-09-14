@@ -8,5 +8,6 @@ module.exports = function(app) {
   const router = express.Router();
 
   router.get("/getLoginURL", gmailController.getLoginURL);
+  router.get("/getAccessToken", gmailController.getAccessToken);
   app.use(CONST.API_PATH, router);
 };
