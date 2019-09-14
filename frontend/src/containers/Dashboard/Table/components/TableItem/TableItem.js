@@ -19,7 +19,7 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
     timeRemainingText = "One Minutes Remaining";
   } else if (timeRemaining < 0) {
     timeRemainingText = "Time's Up !!";
-  } else {
+  } else if (timeRemaining) {
     timeRemainingText = timeRemaining + " Minutes Remaining";
   }
 
