@@ -1,0 +1,54 @@
+@import '../../const/index.scss';
+
+.login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: $dark;
+
+  &-card {
+    margin-top: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba($dark, 0.3);
+    text-align: center;
+    padding: 100px;
+
+    &-logo {
+      margin-bottom: 24px;
+    }
+
+    &-title {
+      font-size: 36px;
+      font-weight: 300;
+      color: $dark;
+      letter-spacing: 6px;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    &-subtitle {
+      font-size: 16px;
+      font-weight: 500;
+      color: $dark;
+      opacity: 0.4;
+      margin-bottom: 64px;
+    }
+
+    &-button {
+      cursor: pointer;
+    }
+  }
+
+  .copyright {
+    margin-top: auto;
+    padding-bottom: 16px;
+    color: #fff;
+    opacity: 0.6;
+    font-size: 12px;
+  }
+}
