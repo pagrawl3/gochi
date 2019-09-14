@@ -40,7 +40,11 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
             <CategoryDot
               color={category.color}
               className={`tableItem-column-labelsContainer-titleContainer-category`}
-              onClick={() => setCategoryClicked(!categoryClicked )}
+              onClick={() => {
+                if ({categories}) {
+                  setCategoryClicked(!categoryClicked)
+                }                
+              }}
             />
             <div
               className={`tableItem-column-labelsContainer-titleContainer-categoryDots`}>

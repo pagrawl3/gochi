@@ -31,6 +31,7 @@
       &-titleContainer {
         display: flex;
         align-items: center;
+        position: relative;
 
         &-hide-current {
           > div:first-child {
@@ -43,9 +44,15 @@
           }
 
           > div:nth-child(2) {
-            display: flex;
+            
+            opacity: 1;
             margin-left: 0;
             transition: all 0.2ms ease-in-out;
+          }
+
+          >div::last-child {
+            transition: all 0.2ms ease-in-out;
+            margin-left: 85px;
           }
         }
 
@@ -56,8 +63,12 @@
         }
 
         &-categoryDots {
+          position: absolute;
+          left: 0;
+          top: 0;
           transition: all 0.2s ease-out;
-          display: none;
+          display: flex;
+          opacity: 0;
         }
 
         &-title {
@@ -69,6 +80,8 @@
           line-height: normal;
           letter-spacing: normal;
           color: #2b2d42;
+          transition: all 0.2ms ease-in-out;
+          margin-left: 0px;
         }
 
         &:last-child {
