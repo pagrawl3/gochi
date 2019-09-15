@@ -7,8 +7,8 @@ import CategoryDot from "../../../../../components/CategoryDot";
 import "./TableItem.scss";
 import Context from "../../../../../components/Context";
 
-function TableItem({ title, subject, senderName, categoryId, status, date }) {
-  const { categories } = React.useContext(Context);
+function TableItem({ title, subject, senderName, categoryId, status, date, id }) {
+  const { categories, setState } = React.useContext(Context);
 
   const category =
     categories.find(category => category._id === categoryId) || {};
@@ -23,7 +23,7 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
   const hideActiveDot = categoryClicked ? 'tableItem-column-labelsContainer-titleContainer-hide-current' : '';
 
   if (timeRemaining < 1 && timeRemaining > 0) {
-    timeRemainingText = "One Minutes Remaining";
+    timeRemainingText = "One Minute Remaining";
   } else if (timeRemaining < 0) {
     timeRemainingText = "Time's Up !!";
   } else if (timeRemaining) {
@@ -31,7 +31,7 @@ function TableItem({ title, subject, senderName, categoryId, status, date }) {
   }
 
   return (
-    <div className="tableItem">
+    <div className="tableItem" onClick={() => setState({ currentEmailId: id, emailOpen: true })}>
       <div className="tableItem-column lhs">
         <CheckBox className="tableItem-column-accessory" />
         <div className="tableItem-column-labelsContainer">

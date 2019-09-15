@@ -2,7 +2,9 @@ import React from "react";
 import "./Header.scss";
 import Icon from "../Header/Icon";
 
-import settingsIcon from "../../icons/iconPlaceholder.svg";
+import SearchIcon from "../../icons/search.svg";
+import RefreshIcon from "../../icons/refresh.svg";
+import SettingsIcon from "../../icons/settings.svg";
 
 function Header({ title, subtitle }) {
   return (
@@ -11,11 +13,10 @@ function Header({ title, subtitle }) {
         <div className="header-column-title">{title}</div>
         <div className="header-column-subtitle">{subtitle}</div>
       </div>
-
       <div className="header-column rhs">
-        <Icon source={settingsIcon} />
-        <Icon source={settingsIcon} />
-        <Icon source={settingsIcon} excludeMargin={true} />
+        <Icon source={SearchIcon} />
+        <Icon source={RefreshIcon} />
+        <Icon source={SettingsIcon} excludeMargin={true} />
       </div>
     </div>
   );

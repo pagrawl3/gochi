@@ -10,6 +10,17 @@ import CategoryCTA from './components/CategoryCTA';
 function DetailedView() {
   const { setState, categories, emailOpen: active } = React.useContext(Context);
   const activeClassName = active ? 'active' : '';
+
+  // React.useEffect(() => {
+  //   const apiCalls = [
+  //     API.getEmail(id),
+  //   ];
+
+  //   Promise.all(apiCalls).then(([{ categories, statuses }, emails]) => {
+  //     setState({ categories, statuses, emails });
+  //   });
+  // }, [setState]);
+
   return (
     <div className={`detailed-view ${activeClassName}`}>
       <div className="detailed-view-overlay" />

@@ -15,7 +15,7 @@ function TabBar({ tabs }) {
             <TabItem
               active={statusFilter === tab._id}
               onClick={() => setState({ statusFilter: tab._id })}
-              name={`${tab.title}(${tab.count})`}
+              name={`${tab.title} (${tab.count})`}
             />
           );
         })}

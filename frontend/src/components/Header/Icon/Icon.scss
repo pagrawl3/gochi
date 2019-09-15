@@ -1,7 +1,9 @@
 @import "../../../const/index.scss";
 
 .icon {
-  margin-right: 8px;
+  margin-right: 20px;
+  max-height: 20px;
+  cursor: pointer;
 
   &-image {
     width: $header-icon-width;

@@ -1,6 +1,6 @@
 @import '../../const/index.scss';
 
-$size: 18px;
+$size: 14px;
 
 .checkbox {
   display: flex;
@@ -9,12 +9,9 @@ $size: 18px;
   width: $size;
   height: $size;
   padding: 8px;
-  border-radius: $size;
+  border-radius: 50%;
   &-icon {
     width: $size;
     height: $size;
-  }
-
-  &-title {
   }
 }

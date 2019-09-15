@@ -12,6 +12,7 @@ const Provider = ({ children, value = {} }) => {
     setStateObject({ ...state, ...object });
   };
 
+  
   return <Context.Provider value={{ ...state, setValue, setState }}>{children}</Context.Provider>;
 };
 

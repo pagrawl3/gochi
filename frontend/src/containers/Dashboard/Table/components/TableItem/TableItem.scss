@@ -47,12 +47,12 @@
 
           > div:last-child {
             transition: all 0.2s ease-in-out;
-            margin-left: 65px;
+            margin-left: 75px;
           }
         }
 
         &-category {
-          margin-right: 4px;
+          margin-right: 8px;
           opacity: 1;
           cursor: pointer;
 
@@ -103,7 +103,10 @@
         line-height: normal;
         letter-spacing: normal;
         color: #8d99ae;
-
+        max-width: 75%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
         margin-top: 4px;
       }
     }

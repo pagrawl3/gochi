@@ -11,19 +11,23 @@ import Table from "./Table";
 import Footer from "./Footer";
 
 function Dashboard({ id }) {
-  const { setState } = React.useContext(Context);
+  const { setState, emails } = React.useContext(Context);
   React.useEffect(() => {
-    API.getDashboard(id).then(data => {
-      const { categories, statuses } = data;
-      setState({ categories, statuses });
+    const apiCalls = [
+      API.getDashboard(id),
+      API.getEmails(id)
+    ];
+
+    Promise.all(apiCalls).then(([{ categories, statuses }, emails]) => {
+      setState({ categories, statuses, emails });
     });
   }, [id]);
-
+  
   return (
     <div className="dashboard">
       <Header title="ON CALL DASHBOARD" subtitle="platform.support@haptik.ai" />
       <TabBar />
-      <Table />
+      <Table emails={emails} />
       <Footer />
     </div>
   );
