@@ -119,9 +119,10 @@ function getGmailToken(code) {
 
 function getGmailThreads(accessToken) {
   const CONFIG = { headers: { authorization: `Bearer ${accessToken}` } };
+  const QUERY_PARAMS = { q: 'to:platform.support@haptik.ai' };
   return new Promise((resolve, reject) => {
     axios
-      .get('https://www.googleapis.com/gmail/v1/users/me/threads', CONFIG)
+      .get('https://www.googleapis.com/gmail/v1/users/me/threads' + toQueryString(QUERY_PARAMS), CONFIG)
       .then(res => {
         resolve(res.data.threads);
       })
@@ -176,4 +177,15 @@ function getReplies(otherMessages) {
       textHtml
     };
   });
+}
+
+function toQueryString(json) {
+  return (
+    '?' +
+    Object.keys(json)
+      .map(function(key) {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]);
+      })
+      .join('&')
+  );
 }

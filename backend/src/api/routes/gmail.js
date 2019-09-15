@@ -7,8 +7,6 @@ const gmailController = require('../controllers/gmail');
 module.exports = function(app) {
   const router = express.Router();
 
-  // gmailController.sync();
-
   router.get('/sync', gmailController.sync);
   router.get('/login/url', gmailController.getLoginURL);
   router.post('/login/callback', gmailController.getAccessToken);

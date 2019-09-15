@@ -6,6 +6,7 @@ const categoryRouter = require('./routes/category');
 const statusRouter = require('./routes/status');
 const dashboardRouter = require('./routes/dashboard');
 const gmailRouter = require('./routes/gmail');
+const emailRouter = require('./routes/email');
 
 module.exports = function(app) {
   app.get(CONST.API_PATH, (req, res) => _helper.returnSuccess(res, 'Gochi API v1.0.1'));
@@ -16,4 +17,5 @@ module.exports = function(app) {
   statusRouter(app);
   dashboardRouter(app);
   gmailRouter(app);
+  emailRouter(app);
 };

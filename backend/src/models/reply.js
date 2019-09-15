@@ -5,6 +5,7 @@ const Reply = new Schema(
   {
     date: { type: Date },
     from: { type: String, default: '' },
+    to: { type: String, default: '' },
     cc: { type: String, default: '' },
     body: { type: String, default: '' },
     snippet: { type: String, default: '' },
