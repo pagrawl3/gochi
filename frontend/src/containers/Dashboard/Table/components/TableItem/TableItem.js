@@ -1,5 +1,4 @@
 import React from "react";
-import Dayjs from "dayjs";
 
 import CheckBox from "../../../../../components/Checkbox";
 import CategoryDot from "../../../../../components/CategoryDot";
@@ -8,35 +7,48 @@ import "./TableItem.scss";
 import Context from "../../../../../components/Context";
 import API from "../../../../../api";
 
-function TableItem({ title, subject, senderName, categoryId, status, date, id }) {
+function TableItem({
+  title,
+  subject,
+  senderName,
+  category,
+  status,
+  timeRemaining,
+  id
+}) {
+  console.log("Time Remainin: " + timeRemaining);
+
   const { categories, setState } = React.useContext(Context);
-
-  const category =
-    categories.find(category => category._id === categoryId) || {};
-  const { duration } = category;
-
-  const currentDate = Dayjs();
-  const timeElapsed = currentDate.diff(date, "second");
-  const timeRemaining = (duration - timeElapsed) / 60;
   var timeRemainingText = "";
 
   const [categoryClicked, setCategoryClicked] = React.useState(false);
-  const hideActiveDot = categoryClicked ? 'tableItem-column-labelsContainer-titleContainer-hide-current' : '';
+  const hideActiveDot = categoryClicked
+    ? "tableItem-column-labelsContainer-titleContainer-hide-current"
+    : "";
 
-  if (timeRemaining < 1 && timeRemaining > 0) {
-    timeRemainingText = "One Minute Remaining";
-  } else if (timeRemaining < 0) {
-    timeRemainingText = "Time's Up !!";
-  } else if (timeRemaining) {
-    timeRemainingText = timeRemaining + " Minutes Remaining";
+  if (!timeRemaining) {
+    timeRemainingText = "Tag Needed";
+  } else {
+    if (timeRemaining < 1 && timeRemaining > 0) {
+      timeRemainingText = "One Minute Remaining";
+    } else if (timeRemaining < 0) {
+      timeRemainingText = "Time's Up !!";
+    } else if (timeRemaining) {
+      timeRemainingText = timeRemaining + " Minutes Remaining";
+    }
   }
 
   return (
-    <div className="tableItem" onClick={() => setState({ currentEmailId: id, emailOpen: true })}>
+    <div
+      className="tableItem"
+      onClick={() => setState({ currentEmailId: id, emailOpen: true })}
+    >
       <div className="tableItem-column lhs">
         <CheckBox className="tableItem-column-accessory" />
         <div className="tableItem-column-labelsContainer">
-          <div className={`tableItem-column-labelsContainer-titleContainer ${hideActiveDot}`}>
+          <div
+            className={`tableItem-column-labelsContainer-titleContainer ${hideActiveDot}`}
+          >
             {/* Category Dot */}
             <CategoryDot
               color={category.color}
@@ -44,17 +56,20 @@ function TableItem({ title, subject, senderName, categoryId, status, date, id })
               onClick={e => {
                 if (categories.length) {
                   e.stopPropagation();
-                  setCategoryClicked(!categoryClicked)
-                }                
+                  setCategoryClicked(!categoryClicked);
+                }
               }}
             />
             <div
-              className={`tableItem-column-labelsContainer-titleContainer-categoryDots`}>
+              className={`tableItem-column-labelsContainer-titleContainer-categoryDots`}
+            >
               {categories.map((categoryItem, i) => {
-                let className = "tableItem-column-labelsContainer-titleContainer-category";
+                let className =
+                  "tableItem-column-labelsContainer-titleContainer-category";
 
                 if (categoryItem.color === category.color) {
-                  className = "tableItem-column-labelsContainer-titleContainer-category tableItem-column-labelsContainer-titleContainer-category-active";
+                  className =
+                    "tableItem-column-labelsContainer-titleContainer-category tableItem-column-labelsContainer-titleContainer-category-active";
                 }
                 return (
                   <CategoryDot
@@ -69,7 +84,7 @@ function TableItem({ title, subject, senderName, categoryId, status, date, id })
                       }
                     }
                   />
-                )
+                );
               })}
             </div>
             {/* Email Title */}

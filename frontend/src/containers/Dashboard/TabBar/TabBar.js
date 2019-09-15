@@ -5,7 +5,45 @@ import Context from "../../../components/Context";
 import TabItem from "./components/TabItem";
 import Filter from "./components/Filter";
 
-function TabBar({ tabs }) {
+function getName(id, emails, tab) {
+  switch (id) {
+    case 0:
+      return `${tab.title} (${emails.length})`;
+
+    case 1:
+      return `${tab.title} (${emails.reduce((sum, email, index) => {
+        if (email.status && email.status.includes("First response needed")) {
+          return sum + 1;
+        } else {
+          return sum;
+        }
+      }, 0)})`;
+
+    case 2:
+      return `${tab.title} (${emails.reduce((sum, email, index) => {
+        if (
+          email.status &&
+          (email.status.includes("Follow up") ||
+            email.status.includes("Waiting for reply"))
+        ) {
+          return sum + 1;
+        } else {
+          return sum;
+        }
+      }, 0)})`;
+
+    case 3:
+      return `${tab.title} (${emails.reduce((sum, email, index) => {
+        if (email.resolved) {
+          return sum + 1;
+        } else {
+          return sum;
+        }
+      }, 0)})`;
+  }
+}
+
+function TabBar({ tabs, emails }) {
   const { setState, statusFilter } = React.useContext(Context);
   return (
     <div className="tabBar">
@@ -15,7 +53,7 @@ function TabBar({ tabs }) {
             <TabItem
               active={statusFilter === tab._id}
               onClick={() => setState({ statusFilter: tab._id })}
-              name={`${tab.title} (${tab.count})`}
+              name={getName(tab._id, emails, tab)}
             />
           );
         })}
@@ -30,13 +68,13 @@ function TabBar({ tabs }) {
 
 TabBar.defaultProps = {
   tabs: [
-    { title: "ALL", _id: 0, count: 12 },
-    { title: "FIRST REPLY NEEDED", _id: 1, count: 1 },
-    { title: "TAG NEEDED", _id: 2, count: 2 },
-    { title: "FOLLOW UP NEEDED", _id: 3, count: 3 },
-    { title: "WAITING FOR REPLY", _id: 4, count: 4 },
-    { title: "RESOLVED", _id: 5, count: 5 }
-  ]
+    { title: "ALL", _id: 0 },
+    { title: "NOT STARTED", _id: 1 },
+    { title: "IN PROGRESS", _id: 2 },
+    { title: "COMPLETE", _id: 3 }
+  ],
+
+  emails: []
 };
 
 export default TabBar;

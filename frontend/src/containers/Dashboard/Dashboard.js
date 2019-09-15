@@ -26,7 +26,7 @@ function Dashboard({ id }) {
   return (
     <div className="dashboard">
       <Header title="ON CALL DASHBOARD" subtitle="platform.support@haptik.ai" />
-      <TabBar />
+      <TabBar emails={emails}/>
       <Table emails={emails} />
       <Footer />
     </div>
