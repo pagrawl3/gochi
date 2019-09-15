@@ -23,15 +23,19 @@ exports.authenticate = function(req, res, next) {
   }
 
   verifyToken(token)
-    .then(decoded => User.findOne({ _id: decoded.id }).populate('dashboards'))
+    .then(decoded => {
+      console.log('DECODED', decoded);
+      return User.findOne({ _id: decoded.id }).populate('dashboards');
+    })
     .then(user => {
+      console.log('USER', user);
       req.user = user;
-      returnSuccess(expressRes, 'User info', {
+      returnSuccess(res, 'User info', {
         token: token,
         user: user
       });
     })
-    .catch(err => returnError(res, err));
+    .catch(err => returnError(res, err.toString()));
 };
 
 exports.getAccessToken = async function(req, expressRes) {
