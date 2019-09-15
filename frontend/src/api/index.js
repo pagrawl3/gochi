@@ -10,7 +10,7 @@ class API {
 
   getLoginURL = () => this.request.get(`${BASE_URL}/login/url`);
   login = code => this.request.post(`${BASE_URL}/login/callback`, { code });
-  authenticate = code => this.request.post(`${BASE_URL}/login/authenticate`, { code });
+  authenticate = token => this.request.post(`${BASE_URL}/login/authenticate`, { token });
 
   // GET CALLS
   getDashboard = dashboardId => this.request.get(`${BASE_URL}/dashboards/${dashboardId}`);

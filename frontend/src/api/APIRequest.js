@@ -1,6 +1,6 @@
 export default class APIRequest {
   constructor() {
-    this._token = 'gochigang';
+    this._token = '';
   }
 
   get = (url, data = {}) =>
