@@ -24,7 +24,7 @@ exports.getAllEmails = async function(req, res) {
     .lean()
     .then(async emails => {
       if (!emails) throw Error('No emails found');
-      const enhancedEmails = await calculateDerivedData(emails);
+      const enhancedEmails = await calculateDerivedData(emails, req.user.email);
       returnSuccess(res, 'Emails fetched successfully', enhancedEmails);
     })
     .catch(() => returnError(res, 'Error fetching emails', 500));
@@ -68,11 +68,11 @@ exports.changeEmailResolution = async function(req, res) {
   }
 };
 
-function calculateDerivedData(emails) {
-  return Promise.all(emails.map(calculateDerivedDataForEmail));
+function calculateDerivedData(emails, userMail) {
+  return Promise.all(emails.map(calculateDerivedDataForEmail, userMail));
 }
 
-function calculateDerivedDataForEmail(email) {
+function calculateDerivedDataForEmail(email, userEmail) {
   return new Promise(async (resolve, reject) => {
     const numReplies = email.replies.length;
     const lastReply = email.replies[numReplies - 1];
@@ -80,7 +80,7 @@ function calculateDerivedDataForEmail(email) {
     email.numReplies = email.replies.length;
 
     if (!numReplies) email.status = 'First Response Needed';
-    else if (numReplies && lastReply.from === req.user.email) email.status = 'Waiting for Reply';
+    else if (numReplies && lastReply.from === userEmail) email.status = 'Waiting for Reply';
     else if (numReplies) email.status = 'Waiting for Reply';
     else if (email.resolved) email.status = 'Resolved';
     else if (!email.category) email.status = '';
