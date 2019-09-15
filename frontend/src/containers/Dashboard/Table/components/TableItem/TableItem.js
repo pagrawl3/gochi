@@ -7,11 +7,21 @@ import './TableItem.scss';
 import Context from '../../../../../components/Context';
 import API from '../../../../../api';
 
-function TableItem({ title, subject, senderName, category, status, timeRemaining, id, resolved: apiResolved }) {
+function TableItem({
+  title,
+  subject,
+  senderName,
+  category: apiCategory,
+  status,
+  timeRemaining,
+  id,
+  resolved: apiResolved
+}) {
   console.log('Time Remainin: ' + timeRemaining);
 
   const { categories, setState } = React.useContext(Context);
   const [resolved, setResolved] = React.useState(apiResolved);
+  const [category, setCategory] = React.useState(apiCategory);
   var timeRemainingText = '';
 
   const [categoryClicked, setCategoryClicked] = React.useState(false);
@@ -70,6 +80,7 @@ function TableItem({ title, subject, senderName, category, status, timeRemaining
                       e.stopPropagation();
                       console.log(categoryItem);
                       API.updateEmailCategory(id, categoryItem._id);
+                      setCategory(categoryItem);
                       setCategoryClicked(!categoryClicked);
                     }}
                   />
