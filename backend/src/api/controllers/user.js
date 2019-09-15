@@ -33,6 +33,7 @@ exports.authenticate = function(req, res, next) {
     return returnError(res, 'Access Token not provided');
   }
 
+  console.log('AUTHENTICATING YALL');
   verifyToken(token)
     .then(decoded => User.findOne({ _id: decoded.id }))
     .then(user => {
