@@ -8,10 +8,11 @@ const emailController = require('../controllers/email');
 module.exports = function(app) {
   const router = express.Router();
   const route = utils.createRoute(router, userController.authenticate);
-  const { getAllEmails, getEmail, changeEmailCategory, changeEmailResolution } = emailController;
+  const { getAllEmails, getEmail, getReplies, changeEmailCategory, changeEmailResolution } = emailController;
 
   route('/dashboards/:dashboardId/emails', getAllEmails, 'GET');
   route('/emails/:id', getEmail, 'GET');
+  route('/emails/:threadId/replies', getReplies, 'GET');
   route('/emails/:id/category', changeEmailCategory, 'POST');
   route('/emails/:id/resolution', changeEmailResolution, 'POST');
 

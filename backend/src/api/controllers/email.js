@@ -1,12 +1,26 @@
 const utils = require('../../utils');
 const Email = require('../../models/email');
+const Reply = require('../../models/reply');
+const Dashboard = require('../../models/dashboard');
 
 const { returnError, returnSuccess } = utils;
 
 exports.getAllEmails = async function(req, res) {
-  Email.find({ dashboard: req.params.dashboardId })
+  const dashboard = await Dashboard.findOne({ _id: req.params.dashboardId });
+  const { durationType, startDate } = dashboard;
+  const endDate = new Date(startDate);
+
+  endDate.setDate(endDate.getDate() + (durationType === 'WEEKLY' ? 7 : 30));
+  Email.find({
+    dashboard: req.params.dashboardId,
+    date: {
+      // $gte: startDate,
+      $lte: endDate
+    }
+  })
     .populate('category')
     .populate('status')
+    .populate('replies')
     .select('-textHtml')
     .select('-textPlain')
     .then(emails => {
@@ -22,6 +36,13 @@ exports.getEmail = function(req, res) {
     .populate('category')
     .populate('status')
     .then(email => returnSuccess(res, 'Email fetched successfully', email))
+    .catch(() => returnError(res, 'Error fetching email', 500));
+};
+
+exports.getReplies = function(req, res) {
+  const threadId = req.params.threadId;
+  Reply.find({ threadId: threadId })
+    .then(replies => returnSuccess(res, 'Replies fetched successfully', replies))
     .catch(() => returnError(res, 'Error fetching email', 500));
 };
 

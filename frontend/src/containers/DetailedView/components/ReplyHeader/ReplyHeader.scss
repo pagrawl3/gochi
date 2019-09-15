@@ -1,0 +1,21 @@
+@import '../../../../const/index.scss';
+
+.reply-header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  padding: 16px;
+  border-top: 1px solid $light;
+  border-bottom: 1px solid $light;
+
+  display: flex;
+  align-items: center;
+
+  &-text {
+    &-subtitle {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

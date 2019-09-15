@@ -33,6 +33,8 @@ exports.getAccessToken = async function(req, expressRes) {
 
       const user = await User.findOne({ email });
 
+      console.log('DATAAA', data);
+
       let updatedUser = user;
       if (!user) {
         updatedUser = await new User(updatedProps).save();
@@ -57,7 +59,7 @@ exports.getAccessToken = async function(req, expressRes) {
 
 exports.sync = function(req, res) {
   const accessToken =
-    'ya29.GluEB2SLqxoVfX4NImxOh1AVsyxIRQx8uW2svBaKUCMssdjnPlRUk3vIV_RMGQqIAk-fKoSrE0Bbp0wJLluVWCe5X0XeIvRhA-H__WyHM52FV3hb7lZpX3B4CdJ8';
+    'ya29.GluEB7GD29hBQxcLeVT2HhzReMc_nIN1_JwUUKl78AgdFUeN5bkh_UaC-LJlfaPEGUVLBziC26KGKNIXJGFi90maLgnYqE0gQrMwMtz3OqDE91URRWWwJK8yaQKo';
   const refreshToken = '1/Hx-6hcJo6uGvRdd1-1-ke8A2tA-Zf5NaSbAQtwgyzlw';
 
   getGmailThreads(accessToken)
@@ -79,8 +81,10 @@ exports.sync = function(req, res) {
           new Promise(async (resolve, reject) => {
             await Email.remove({ threadId: email.threadId });
             await Reply.remove({ threadId: email.threadId });
+            const newReplies = await Reply.insertMany(replies.map(reply => ({ ...reply })));
             const newEmail = await new Email(email).save();
-            const newReplies = await Reply.insertMany(replies.map(reply => ({ ...reply, email: newEmail._id })));
+            await newEmail.save();
+
             resolve({ email: newEmail, replies: newReplies });
           })
       );

@@ -14,6 +14,7 @@ class API {
   getDashboard = dashboardId => this.request.get(`${BASE_URL}/dashboards/${dashboardId}`);
   getEmails = dashboardId => this.request.get(`${BASE_URL}/dashboards/${dashboardId}/emails`);
   getEmail = emailId => this.request.get(`${BASE_URL}/emails/${emailId}`);
+  getReplies = threadId => this.request.get(`${BASE_URL}/emails/${threadId}/replies`);
 
   // UPDATE CALLS
   updateEmailCategory = emailId => this.request.put(`${BASE_URL}/emails/${emailId}/category`);

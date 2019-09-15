@@ -1,4 +1,4 @@
-@import "../../../../const/index.scss";
+@import '../../../../const/index.scss';
 
 .email-header {
   padding: 16px;
@@ -6,6 +6,7 @@
 
   display: flex;
   align-items: center;
+  background-color: #fff;
 
   &-checkbox {
     margin-right: 12px;
