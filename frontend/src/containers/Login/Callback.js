@@ -17,6 +17,7 @@ function Callback() {
       const { token } = data;
       const { dashboards, ...user } = data.user;
       API._setToken(token);
+      localStorage.token = token;
       setState({ user, dashboards });
       setLoggedIn(true);
     });

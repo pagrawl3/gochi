@@ -8,11 +8,30 @@ const Reply = require('../../models/reply');
 const CONST = require('../../const');
 const utils = require('../../utils');
 
-const { returnError, returnSuccess } = utils;
+const { returnError, returnSuccess, verifyToken } = utils;
 
 exports.getLoginURL = async function(req, res) {
   const URL = `${CONST.GMAIL.AUTH_URI}?client_id=${CONST.GMAIL.CLIENT_ID}&response_type=${CONST.GMAIL.RESPONSE_TYPE}&redirect_uri=${CONST.GMAIL.REDIRECT_URI}&scope=${CONST.GMAIL.SCOPE}&access_type=${CONST.GMAIL.ACCESS_TYPE}&prompt=consent`;
   returnSuccess(res, 'Link generated successfully', { URL: URL });
+};
+
+exports.authenticate = function(req, res, next) {
+  var token = req.body.token || req.query.token;
+
+  if (!token) {
+    return returnError(res, 'Access Token not provided');
+  }
+
+  verifyToken(token)
+    .then(decoded => User.findOne({ _id: decoded._id }).populate('dashboards'))
+    .then(user => {
+      req.user = user;
+      returnSuccess(expressRes, 'User info', {
+        token: token,
+        user: user
+      });
+    })
+    .catch(err => returnError(res, err));
 };
 
 exports.getAccessToken = async function(req, expressRes) {

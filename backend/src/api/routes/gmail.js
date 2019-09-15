@@ -10,5 +10,6 @@ module.exports = function(app) {
   router.get('/sync', gmailController.sync);
   router.get('/login/url', gmailController.getLoginURL);
   router.post('/login/callback', gmailController.getAccessToken);
+  router.post('/login/authenticate', gmailController.authenticate);
   app.use(CONST.API_PATH, router);
 };

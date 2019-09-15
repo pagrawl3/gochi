@@ -14,9 +14,9 @@ const INITIAL_STATE = {
   categories: [],
   statuses: [],
   emailOpen: false,
-  user: {},
+  user: undefined,
   statusFilter: 0,
-  currentEmailId: '',
+  currentEmailId: ''
 };
 
 function App() {

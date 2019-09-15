@@ -9,6 +9,7 @@ class API {
 
   getLoginURL = () => this.request.get(`${BASE_URL}/login/url`);
   login = code => this.request.post(`${BASE_URL}/login/callback`, { code });
+  authenticate = code => this.request.post(`${BASE_URL}/login/authenticate`, { code });
 
   // GET CALLS
   getDashboard = dashboardId => this.request.get(`${BASE_URL}/dashboards/${dashboardId}`);
@@ -17,7 +18,8 @@ class API {
   getReplies = threadId => this.request.get(`${BASE_URL}/emails/${threadId}/replies`);
 
   // UPDATE CALLS
-  updateEmailCategory = (emailId, categoryId) => this.request.put(`${BASE_URL}/emails/${emailId}/category`, { categoryId: categoryId });
+  updateEmailCategory = (emailId, categoryId) =>
+    this.request.put(`${BASE_URL}/emails/${emailId}/category`, { categoryId: categoryId });
   updateEmailStatus = emailId => this.request.put(`${BASE_URL}/emails/${emailId}/status`);
   sync = dashboardId => this.request.post(`${BASE_URL}/dashboards/${dashboardId}/sync`);
 
