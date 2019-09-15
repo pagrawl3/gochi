@@ -78,6 +78,7 @@ exports.getAccessToken = async function(req, expressRes) {
 };
 
 exports.sync = function(req, res) {
+  console.log(req.user);
   const accessToken = req.user.auth;
   sync(accessToken)
     .then(dbThreads => returnSuccess(res, 'Synced successfully', dbThreads))
