@@ -64,7 +64,6 @@ exports.getAccessToken = async function(req, expressRes) {
       }
 
       const token = jwt.sign({ id: updatedUser._id }, 'gochigang');
-      await sync(updatedProps.auth);
       returnSuccess(expressRes, 'User info', {
         token: token,
         user: updatedUser
