@@ -34,9 +34,8 @@ exports.getEmail = function(req, res) {
   const emailID = req.params.id;
   Email.findOne({ _id: emailID })
     .populate('category')
-    .populate('status')
     .then(email => returnSuccess(res, 'Email fetched successfully', email))
-    .catch(() => returnError(res, 'Error fetching email', 500));
+    .catch(e => returnError(res, e.toString(), 500));
 };
 
 exports.getReplies = function(req, res) {
