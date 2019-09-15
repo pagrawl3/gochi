@@ -7,6 +7,8 @@
   padding: 16px 8px;
   border-bottom: $light;
   border-bottom-width: 1px;
+  overflow: hidden;
+  flex-wrap: nowrap;
   border-bottom-style: solid;
   cursor: pointer;
 
@@ -15,11 +17,14 @@
       display: flex;
       align-items: center;
       margin-left: 8px;
+      flex: 0 1 auto;
+      overflow: hidden;
     }
 
     &.rhs {
       align-items: center;
       margin-right: 8px;
+      flex: 1 0 auto;
     }
 
     &-accessory {
@@ -88,6 +93,10 @@
           color: #2b2d42;
           transition: all 0.2s ease-in-out;
           margin-left: 0px;
+          max-width: 60%;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
 
         &:last-child {
@@ -104,7 +113,7 @@
         line-height: normal;
         letter-spacing: normal;
         color: #8d99ae;
-        max-width: 75%;
+        max-width: 60%;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
