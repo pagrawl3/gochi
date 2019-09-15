@@ -9,19 +9,36 @@ import GochiLogo from '../../icons/gochi.svg';
 import './Login.scss';
 
 function Login() {
+  const [loader, setLoader] = React.useState(true);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [loginURL, setLoginURL] = React.useState('');
   const { setState } = React.useContext(Context);
   React.useEffect(() => {
     API.getLoginURL().then(({ URL }) => setLoginURL(URL));
     const token = localStorage.token;
-    API.authenticate(token).then(data => {
-      const { dashboards, ...user } = data.user;
-      API._setToken(token);
-      setState({ user, dashboards, dashboard: dashboards[0] });
-      setLoggedIn(true);
-    });
+    API.authenticate(token)
+      .then(data => {
+        const { dashboards, ...user } = data.user;
+        API._setToken(token);
+        setState({ user, dashboards, dashboard: dashboards[0] });
+        setLoggedIn(true);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
   }, []);
+
+  if (loader) {
+    return (
+      <div className="login">
+        <img
+          className="loader"
+          src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/cd514331234507.564a1d2324e4e.gif"
+        />
+        <div className="loader-text"> We are preparing your dashboard. Just hold on a few seconds...</div>
+      </div>
+    );
+  }
 
   return loggedIn ? (
     <Redirect to="/emails" />

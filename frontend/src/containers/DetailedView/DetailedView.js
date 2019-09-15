@@ -42,14 +42,26 @@ function DetailedView() {
           <img src={CrossButton} alt="" />
         </div>
         <div className="detailed-view-body-content">
-          <EmailHeader subject={subject} from={from} date={date} />
-          <EmailBody>{body}</EmailBody>
-          {replies.map(() => (
+          {!subject ? (
+            <div className="loader-wrapper">
+              <img
+                className="loader"
+                src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/cd514331234507.564a1d2324e4e.gif"
+              />
+              <div className="loader-text"> We are preparing your dashboard. Just hold on a few seconds...</div>
+            </div>
+          ) : (
             <>
-              <ReplyHeader from={from} date={date} />
+              <EmailHeader subject={subject} from={from} date={date} />
               <EmailBody>{body}</EmailBody>
+              {replies.map(() => (
+                <>
+                  <ReplyHeader from={from} date={date} />
+                  <EmailBody>{body}</EmailBody>
+                </>
+              ))}
             </>
-          ))}
+          )}
         </div>
         <div className="detailed-view-body-ctas">
           {categories.map((category, i) => (
