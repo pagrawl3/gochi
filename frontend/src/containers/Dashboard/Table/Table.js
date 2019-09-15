@@ -15,7 +15,7 @@ function Table({ emails, categories }) {
     const currentDate = Dayjs();
     const timeElapsed = currentDate.diff(email.date, 'second');
     console.log('time elapsed: ' + timeElapsed);
-    timeRemainingArray[email._id] = (getCategory(email, categories).duration - timeElapsed) / 60;
+    timeRemainingArray[email._id] = Math.round(((getCategory(email, categories).duration || 3600 * 60 * 8 - timeElapsed) / 120 - 300) * 100) / 100;
   });
 
   const sortedEmails = emails.sort((a, b) => {
