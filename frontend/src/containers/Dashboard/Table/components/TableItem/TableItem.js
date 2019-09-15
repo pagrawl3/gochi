@@ -6,6 +6,7 @@ import CategoryDot from "../../../../../components/CategoryDot";
 
 import "./TableItem.scss";
 import Context from "../../../../../components/Context";
+import API from "../../../../../api";
 
 function TableItem({ title, subject, senderName, categoryId, status, date, id }) {
   const { categories, setState } = React.useContext(Context);
@@ -62,6 +63,8 @@ function TableItem({ title, subject, senderName, categoryId, status, date, id })
                     color={categoryItem.color}
                     onClick={e => {
                       e.stopPropagation();
+                      console.log(categoryItem);
+                      API.updateEmailCategory(id, categoryItem._id)
                       setCategoryClicked(!categoryClicked)
                       }
                     }
