@@ -7,6 +7,8 @@ import './TableItem.scss';
 import Context from '../../../../../components/Context';
 import API from '../../../../../api';
 
+const DASHBOARD_ID = '5d7cc9566455590e63a4968e';
+
 function TableItem({
   title,
   subject,
@@ -45,7 +47,7 @@ function TableItem({
         <CheckBox
           onClick={e => {
             e.stopPropagation();
-            API.updateEmailStatus(id, !resolved);
+            API.updateEmailStatus(id, !resolved).then(() => API.getEmails(DASHBOARD_ID));
             setResolved(!resolved);
           }}
           className={`tableItem-column-accessory ${resolved ? 'email-header-checkbox-active' : ''}`}
@@ -79,7 +81,7 @@ function TableItem({
                     onClick={e => {
                       e.stopPropagation();
                       console.log(categoryItem);
-                      API.updateEmailCategory(id, categoryItem._id);
+                      API.updateEmailCategory(id, categoryItem._id).then(() => API.getEmails(DASHBOARD_ID));
                       setCategory(categoryItem);
                       setCategoryClicked(!categoryClicked);
                     }}
