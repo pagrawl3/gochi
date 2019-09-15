@@ -20,8 +20,9 @@ class API {
 
   // UPDATE CALLS
   updateEmailCategory = (emailId, categoryId) =>
-    this.request.put(`${BASE_URL}/emails/${emailId}/category`, { categoryId: categoryId });
-  updateEmailStatus = emailId => this.request.put(`${BASE_URL}/emails/${emailId}/status`);
+    this.request.post(`${BASE_URL}/emails/${emailId}/category`, { categoryId: categoryId });
+  updateEmailStatus = (emailId, status) =>
+    this.request.post(`${BASE_URL}/emails/${emailId}/resolution`, { resolved: status });
   sync = dashboardId => this.request.post(`${BASE_URL}/dashboards/${dashboardId}/sync`);
 
   // CLASS SETTERS

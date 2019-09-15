@@ -16,16 +16,16 @@
       cursor: pointer;
       border: 1px solid $green;
       opacity: 0.4;
-      transition: border 0.2s ease-in-out;
 
       & g {
+        transition: border 0.2s ease-in-out;
         fill: $green;
       }
     }
 
+    transition: border 0.2s ease-in-out;
     &-active {
       border: 1px solid $green;
-      transition: border 0.2s ease-in-out;
 
       & g {
         fill: $green;
