@@ -1,0 +1,22 @@
+.FooterItem {
+    display: flex;
+    align-items: center;   
+    margin-right: 24px;
+    
+    &-dot {
+        margin-right: 4px;         
+        &:last-child {
+            margin-right: 0px;
+        }
+    }
+
+    &-name {
+        font-family: AvenirNext;
+        font-size: 10px;
+        font-weight: 600;                       
+    }
+
+    &:last-child {
+        margin-right: 0px;
+    }
+}

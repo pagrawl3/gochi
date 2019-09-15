@@ -8,6 +8,7 @@ import Context from "../../components/Context";
 import Header from "../../components/Header";
 import TabBar from "./TabBar";
 import Table from "./Table";
+import Footer from "./Footer";
 
 function Dashboard({ id }) {
   const { setState } = React.useContext(Context);
@@ -23,6 +24,7 @@ function Dashboard({ id }) {
       <Header title="ON CALL DASHBOARD" subtitle="platform.support@haptik.ai" />
       <TabBar />
       <Table />
+      <Footer />
     </div>
   );
 }
