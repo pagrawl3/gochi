@@ -40,8 +40,9 @@ function TableItem({ title, subject, senderName, categoryId, status, date, id })
             <CategoryDot
               color={category.color}
               className={`tableItem-column-labelsContainer-titleContainer-category`}
-              onClick={() => {
+              onClick={e => {
                 if (categories.length) {
+                  e.stopPropagation();
                   setCategoryClicked(!categoryClicked)
                 }                
               }}
@@ -59,7 +60,11 @@ function TableItem({ title, subject, senderName, categoryId, status, date, id })
                     className={className}
                     selected={categoryClicked}
                     color={categoryItem.color}
-                    onClick={() => setCategoryClicked(!categoryClicked)}
+                    onClick={e => {
+                      e.stopPropagation();
+                      setCategoryClicked(!categoryClicked)
+                      }
+                    }
                   />
                 )
               })}
