@@ -27,21 +27,22 @@ exports.login = async function(req, res) {
 };
 
 exports.authenticate = function(req, res, next) {
-  var token = req.body.token || req.query.token;
-
-  if (!token) {
-    return returnError(res, 'Access Token not provided');
-  }
-
   console.log('AUTHENTICATING YALL');
-  verifyToken(token)
-    .then(decoded => User.findOne({ _id: decoded.id }))
-    .then(user => {
-      console.log('VERIFYING TOKEN', user);
-      req.user = user;
-      next();
-    })
-    .catch(err => returnError(res, err));
+  // var token = req.body.token || req.query.token;
+
+  // if (!token) {
+  //   return returnError(res, 'Access Token not provided');
+  // }
+
+  // console.log('AUTHENTICATING YALL');
+  // verifyToken(token)
+  //   .then(decoded => User.findOne({ _id: decoded.id }))
+  //   .then(user => {
+  //     console.log('VERIFYING TOKEN');
+  //     req.user = user;
+  //     next();
+  //   })
+  //   .catch(err => returnError(res, err));
 };
 
 exports.authenticateRoute = function(req, res) {

@@ -24,11 +24,9 @@ exports.authenticate = function(req, res, next) {
 
   verifyToken(token)
     .then(decoded => {
-      console.log('DECODED', decoded);
       return User.findOne({ _id: decoded.id }).populate('dashboards');
     })
     .then(user => {
-      console.log('USER', user);
       req.user = user;
       returnSuccess(res, 'User info', {
         token: token,
@@ -79,7 +77,7 @@ exports.getAccessToken = async function(req, expressRes) {
 
 exports.sync = function(req, res) {
   console.log(req.user);
-  const accessToken = req.user.auth;
+  const accessToken = req.user && req.user.auth;
   sync(accessToken)
     .then(dbThreads => returnSuccess(res, 'Synced successfully', dbThreads))
     .catch(e => returnError(res, e.toString()));
