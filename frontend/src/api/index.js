@@ -17,7 +17,7 @@ class API {
   getReplies = threadId => this.request.get(`${BASE_URL}/emails/${threadId}/replies`);
 
   // UPDATE CALLS
-  updateEmailCategory = emailId => this.request.put(`${BASE_URL}/emails/${emailId}/category`);
+  updateEmailCategory = (emailId, categoryId) => this.request.put(`${BASE_URL}/emails/${emailId}/category`, { categoryId: categoryId });
   updateEmailStatus = emailId => this.request.put(`${BASE_URL}/emails/${emailId}/status`);
   sync = dashboardId => this.request.post(`${BASE_URL}/dashboards/${dashboardId}/sync`);
 
