@@ -80,10 +80,10 @@ function calculateDerivedDataForEmail(email) {
     email.numReplies = email.replies.length;
 
     if (!numReplies) email.status = 'First Response Needed';
-    else if (!email.category) email.status = 'Tag Needed';
     else if (numReplies && lastReply.from === req.user.email) email.status = 'Waiting for Reply';
     else if (numReplies) email.status = 'Waiting for Reply';
     else if (email.resolved) email.status = 'Resolved';
+    else if (!email.category) email.status = '';
 
     resolve(email);
   });
