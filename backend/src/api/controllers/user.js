@@ -36,6 +36,7 @@ exports.authenticate = function(req, res, next) {
   verifyToken(token)
     .then(decoded => User.findOne({ _id: decoded.id }))
     .then(user => {
+      console.log('VERIFYING TOKEN', user);
       req.user = user;
       next();
     })
