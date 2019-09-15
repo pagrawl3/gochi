@@ -22,10 +22,10 @@ function Dashboard({ id }) {
       setState({ categories, statuses, emails });
     });
   }, [id]);
-  
+
   return (
     <div className="dashboard">
-      <Header title="ON CALL DASHBOARD" subtitle="platform.support@haptik.ai" />
+      <Header title="GOCHI DASHBOARD" subtitle="platform.support@haptik.ai" />
       <TabBar emails={emails}/>
       <Table emails={emails} />
       <Footer />

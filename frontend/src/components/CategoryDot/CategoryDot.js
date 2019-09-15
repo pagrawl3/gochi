@@ -6,7 +6,7 @@ function CategoryDot({ color, size = 12, className, active, selected, onClick })
   let style = {
     width: size,
     height: size,
-    border: `2px dashed #DDD`
+    border: `1px dashed #DDD`
   };
 
   if (color === '#EF233C') {
