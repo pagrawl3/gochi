@@ -3,9 +3,10 @@
 .email-body {
   flex: 1;
   padding: 24px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.7;
+  max-width: 80%;
   * {
     -webkit-font-smoothing: initial;
   }

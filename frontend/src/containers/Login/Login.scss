@@ -51,15 +51,15 @@
     opacity: 0.6;
     font-size: 12px;
   }
+}
 
-  .loader {
-    width: 64px;
-    height: 64px;
+.loader {
+  width: 64px;
+  height: 64px;
 
-    &-text {
-      color: #fff;
-      font-size: 16px;
-      margin-top: 14px;
-    }
+  &-text {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 14px;
   }
 }
