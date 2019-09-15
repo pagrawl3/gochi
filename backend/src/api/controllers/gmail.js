@@ -23,7 +23,7 @@ exports.authenticate = function(req, res, next) {
   }
 
   verifyToken(token)
-    .then(decoded => User.findOne({ _id: decoded._id }).populate('dashboards'))
+    .then(decoded => User.findOne({ _id: decoded.id }).populate('dashboards'))
     .then(user => {
       req.user = user;
       returnSuccess(expressRes, 'User info', {
