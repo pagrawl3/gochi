@@ -15,8 +15,9 @@ const Email = new Schema(
     threadId: { type: String, default: '' },
     category: { type: Schema.ObjectId, ref: 'Category' },
     resolved: { type: Boolean, default: false },
-    status: { type: Schema.ObjectId, ref: 'Status' },
-    dashboard: { type: Schema.ObjectId, ref: 'Dashboard' }
+    status: { type: String, default: '' },
+    dashboard: { type: Schema.ObjectId, ref: 'Dashboard' },
+    replies: [{ type: Schema.ObjectId, ref: 'Reply' }]
   },
   { timestamps: true }
 );

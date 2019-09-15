@@ -18,14 +18,14 @@ exports.getAllEmails = async function(req, res) {
       $lte: endDate
     }
   })
-    .populate('category')
-    .populate('status')
-    .populate('replies')
     .select('-textHtml')
     .select('-textPlain')
-    .then(emails => {
+    .populate('replies', 'from')
+    .lean()
+    .then(async emails => {
       if (!emails) throw Error('No emails found');
-      returnSuccess(res, 'Emails fetched successfully', emails);
+      const enhancedEmails = await calculateDerivedData(emails);
+      returnSuccess(res, 'Emails fetched successfully', enhancedEmails);
     })
     .catch(() => returnError(res, 'Error fetching emails', 500));
 };
@@ -67,3 +67,24 @@ exports.changeEmailResolution = async function(req, res) {
     returnSuccess(res, 'Email resolution updated successfully', updatedEmail);
   }
 };
+
+function calculateDerivedData(emails) {
+  return Promise.all(emails.map(calculateDerivedDataForEmail));
+}
+
+function calculateDerivedDataForEmail(email) {
+  return new Promise(async (resolve, reject) => {
+    const numReplies = email.replies.length;
+    const lastReply = email.replies[numReplies - 1];
+
+    email.numReplies = email.replies.length;
+
+    if (!numReplies) email.status = 'First Response Needed';
+    else if (!email.category) email.status = 'Tag Needed';
+    else if (numReplies && lastReply.from === req.user.email) email.status = 'Waiting for Reply';
+    else if (numReplies) email.status = 'Waiting for Reply';
+    else if (email.resolved) email.status = 'Resolved';
+
+    resolve(email);
+  });
+}

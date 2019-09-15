@@ -52,8 +52,6 @@ exports.getAccessToken = async function(req, expressRes) {
 
       const user = await User.findOne({ email });
 
-      console.log('DATAAA', data);
-
       let updatedUser = user;
       if (!user) {
         updatedUser = await new User(updatedProps).save();
@@ -64,12 +62,11 @@ exports.getAccessToken = async function(req, expressRes) {
       }
 
       const token = jwt.sign({ id: updatedUser._id }, 'gochigang');
+      await sync(updatedProps.auth);
       returnSuccess(expressRes, 'User info', {
         token: token,
         user: updatedUser
       });
-
-      // sync(updatedProps.auth, updatedProps.refreshToken);
     })
     .catch(e => {
       returnError(expressRes, e);
@@ -77,42 +74,48 @@ exports.getAccessToken = async function(req, expressRes) {
 };
 
 exports.sync = function(req, res) {
-  const accessToken =
-    'ya29.GluEB7GD29hBQxcLeVT2HhzReMc_nIN1_JwUUKl78AgdFUeN5bkh_UaC-LJlfaPEGUVLBziC26KGKNIXJGFi90maLgnYqE0gQrMwMtz3OqDE91URRWWwJK8yaQKo';
-  const refreshToken = '1/Hx-6hcJo6uGvRdd1-1-ke8A2tA-Zf5NaSbAQtwgyzlw';
-
-  getGmailThreads(accessToken)
-    .then(threads => {
-      const threadRequests = threads.map(({ id }) => getGmailThread(id, accessToken));
-      return Promise.all(threadRequests);
-    })
-    .then(threads => {
-      const normalizedThreads = threads.map(thread => {
-        const [firstMessage, ...otherMessages] = thread.messages;
-        return { email: getEmail(firstMessage), replies: getReplies(otherMessages) };
-      });
-
-      return Promise.resolve(normalizedThreads);
-    })
-    .then(async normalizedThreads => {
-      const dbCalls = normalizedThreads.map(
-        ({ email, replies }) =>
-          new Promise(async (resolve, reject) => {
-            await Email.remove({ threadId: email.threadId });
-            await Reply.remove({ threadId: email.threadId });
-            const newReplies = await Reply.insertMany(replies.map(reply => ({ ...reply })));
-            const newEmail = await new Email(email).save();
-            await newEmail.save();
-
-            resolve({ email: newEmail, replies: newReplies });
-          })
-      );
-
-      return Promise.all(dbCalls);
-    })
+  const accessToken = req.user.auth;
+  sync(accessToken)
     .then(dbThreads => returnSuccess(res, 'Synced successfully', dbThreads))
     .catch(e => returnError(res, e.toString()));
 };
+
+function sync(accessToken) {
+  return new Promise((resolve, reject) => {
+    getGmailThreads(accessToken)
+      .then(threads => {
+        const threadRequests = threads.map(({ id }) => getGmailThread(id, accessToken));
+        return Promise.all(threadRequests);
+      })
+      .then(threads => {
+        const normalizedThreads = threads.map(thread => {
+          const [firstMessage, ...otherMessages] = thread.messages;
+          return { email: getEmail(firstMessage), replies: getReplies(otherMessages) };
+        });
+
+        return Promise.resolve(normalizedThreads);
+      })
+      .then(async normalizedThreads => {
+        const dbCalls = normalizedThreads.map(
+          ({ email, replies }) =>
+            new Promise(async (resolve, reject) => {
+              await Email.remove({ threadId: email.threadId });
+              await Reply.remove({ threadId: email.threadId });
+              const newReplies = await Reply.insertMany(replies.map(reply => ({ ...reply })));
+              const newEmail = await new Email(email).save();
+              newEmail.replies = newReplies;
+              await newEmail.save();
+
+              resolve({ email: newEmail, replies: newReplies });
+            })
+        );
+
+        return Promise.all(dbCalls);
+      })
+      .then(resolve)
+      .catch(reject);
+  });
+}
 
 function getGmailToken(code) {
   const requestBody = {
