@@ -9,7 +9,6 @@ import './Login.scss';
 function Callback() {
   const [loggedIn, setLoggedIn] = React.useState('');
   const { setState } = React.useContext(Context);
-
   React.useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get('code');
@@ -23,7 +22,17 @@ function Callback() {
     });
   }, []);
 
-  return loggedIn ? <Redirect to="/emails" /> : <div className="login"></div>;
+  return loggedIn ? (
+    <Redirect to="/emails" />
+  ) : (
+    <div className="login">
+      <img
+        className="loader"
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/cd514331234507.564a1d2324e4e.gif"
+      />
+      <div className="loader-text"> We are preparing your dashboard. Just hold on a few seconds...</div>
+    </div>
+  );
 }
 
 export default Callback;
