@@ -20,7 +20,7 @@
     "jsonwebtoken": "^8.3.0",
     "moment": "^2.21.0",
     "mongodb": "^3.3.2",
-    "mongoose": "^5.0.8",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.0",
     "node-mongoose-fixtures": "^0.3.0",
     "pow-mongoose-fixtures": "^0.3.0",
