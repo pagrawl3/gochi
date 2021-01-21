@@ -26,7 +26,7 @@
     "pow-mongoose-fixtures": "^0.3.0",
     "query-string": "^6.8.3",
     "shortid": "^2.2.8",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.2"
